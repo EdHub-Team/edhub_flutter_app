@@ -5,6 +5,7 @@ import 'package:edhub_flutter_app/features/auth/presentation/pages/login_page.da
 import 'package:edhub_flutter_app/features/auth/presentation/pages/signup_page.dart';
 import 'package:edhub_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:edhub_flutter_app/features/learn/presentation/pages/learn_page.dart';
+import 'package:edhub_flutter_app/features/learn/presentation/pages/summary_page.dart';
 import 'package:edhub_flutter_app/features/master/presentation/pages/generate_quiz_page.dart';
 import 'package:edhub_flutter_app/features/master/presentation/pages/master_page.dart';
 import 'package:edhub_flutter_app/features/master/presentation/pages/quiz_page.dart';
@@ -41,6 +42,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path: RoutePath.learnPage,
           page: LearnRoute.page,
+        ),
+        AutoRoute(
+          path: RoutePath.summaryPage,
+          page: SummaryRoute.page,
         ),
 
         //MASTER

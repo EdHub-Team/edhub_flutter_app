@@ -6,7 +6,7 @@ import 'package:edhub_flutter_app/features/master/domain/entities/quiz.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 abstract interface class MasterRemoteDataSource {
-  Future<Quiz> generateTest({
+  Future<Quiz> generateQuiz({
     required String topic,
     required int difficultyLevel,
   });
@@ -14,7 +14,7 @@ abstract interface class MasterRemoteDataSource {
 
 class MasterRemoteDataSourceImpl implements MasterRemoteDataSource {
   @override
-  Future<Quiz> generateTest({
+  Future<Quiz> generateQuiz({
     required String topic,
     required int difficultyLevel,
   }) async {
@@ -24,16 +24,15 @@ class MasterRemoteDataSourceImpl implements MasterRemoteDataSource {
         apiKey: AppSecrets.geminiAPI,
       );
       final prompt =
-          'You are a test/quiz generator for college and school students. '
-          'Follow these instructions: '
-          '1. You will get a topic in the prompt. '
-          '2. Generate a quiz with 3 questions on that topic. '
-          '3. Each question should have 4 options. '
-          '4. Include the correct answer for each question. '
-          '5. Provide a description or explanation for each correct answer. DO NOT give a wrong explanation. '
-          '6. Difficulty Level: $difficultyLevel/10. '
-          '7. Only put questions to which you know the correct answer for sure. '
-          '8. Return response in the following json format only: '
+          'You are a quiz generator for college and school students of India.\n'
+          'Follow these instructions:\n'
+          '1. You will get a topic in the prompt.\n'
+          '2. Generate a quiz with 5 questions considering the given difficulty level on that topic.\n'
+          '3. Each question should have 4 options.\n'
+          '4. Include the correct answer for each question.\n'
+          '5. Provide an explanation for each correct answer. DO NOT give a wrong explanation.\n'
+          '6. Set difficulty level of the questions to $difficultyLevel on a scale of 10.\n'
+          '7. Return response in the following json format only:\n'
           '{'
           '"title": "give a two-word title to the quiz here",'
           '"qnaList": ['

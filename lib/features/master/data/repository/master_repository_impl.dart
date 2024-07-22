@@ -14,7 +14,7 @@ class MasterRepositoryImpl implements MasterRepository {
     required int difficultyLevel,
   }) async {
     try {
-      final Quiz quiz = await masterRemoteDataSource.generateTest(
+      final Quiz quiz = await masterRemoteDataSource.generateQuiz(
         topic: topic,
         difficultyLevel: difficultyLevel,
       );

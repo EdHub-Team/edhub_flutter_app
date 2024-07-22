@@ -63,39 +63,41 @@ class _QuizPageState extends State<QuizPage> {
                       itemCount: state.quiz.qnaList?.length ?? 0,
                       itemBuilder: (context, index) {
                         final QnA? qna = state.quiz.qnaList?[index];
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Q${index + 1}.  ${qna?.question ?? ''}',
-                              style: AppTextStyles.clashDisplay.s18.w6,
-                            ),
-                            SizedBox(height: 16.h),
-                            Text(
-                              'A)  ${qna?.options?['a'].toString() ?? ''}',
-                              style: AppTextStyles.clashDisplay.s18.w5,
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              'B)  ${qna?.options?['b'].toString() ?? ''}',
-                              style: AppTextStyles.clashDisplay.s18.w5,
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              'C)  ${qna?.options?['c'].toString() ?? ''}',
-                              style: AppTextStyles.clashDisplay.s18.w5,
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              'D)  ${qna?.options?['d'].toString() ?? ''}',
-                              style: AppTextStyles.clashDisplay.s18.w5,
-                            ),
-                            SizedBox(height: 24.h),
-                            Text(
-                              'Explanation: ${qna?.explanation ?? 'NA'}',
-                              style: AppTextStyles.clashDisplay.s18.w5,
-                            ),
-                          ],
+                        return SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Q${index + 1}.  ${qna?.question ?? ''}',
+                                style: AppTextStyles.clashDisplay.s18.w6,
+                              ),
+                              SizedBox(height: 16.h),
+                              Text(
+                                'A)  ${qna?.options?['a'].toString() ?? ''}',
+                                style: AppTextStyles.clashDisplay.s18.w5,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                'B)  ${qna?.options?['b'].toString() ?? ''}',
+                                style: AppTextStyles.clashDisplay.s18.w5,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                'C)  ${qna?.options?['c'].toString() ?? ''}',
+                                style: AppTextStyles.clashDisplay.s18.w5,
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                'D)  ${qna?.options?['d'].toString() ?? ''}',
+                                style: AppTextStyles.clashDisplay.s18.w5,
+                              ),
+                              // SizedBox(height: 24.h),
+                              // Text(
+                              //   'Explanation: ${qna?.explanation ?? 'NA'}',
+                              //   style: AppTextStyles.clashDisplay.s18.w5,
+                              // ),
+                            ],
+                          ),
                         );
                       },
                     ),

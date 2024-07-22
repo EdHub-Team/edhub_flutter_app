@@ -5,6 +5,7 @@ import 'package:edhub_flutter_app/core/services/app_services.dart';
 import 'package:edhub_flutter_app/core/theme/theme.dart';
 import 'package:edhub_flutter_app/core/utils/screen_util/screen_util.dart';
 import 'package:edhub_flutter_app/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:edhub_flutter_app/features/learn/presentation/bloc/learn_bloc.dart';
 import 'package:edhub_flutter_app/features/master/presentation/bloc/master_bloc.dart';
 import 'package:edhub_flutter_app/init_dependencies.dart';
 import 'package:edhub_flutter_app/shared/presentation/cubits/app_user/app_user_cubit.dart';
@@ -25,6 +26,9 @@ void main() async {
         ),
         BlocProvider(
           create: (_) => serviceLocator<MasterBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => serviceLocator<LearnBloc>(),
         ),
       ],
       child: const MyApp(),

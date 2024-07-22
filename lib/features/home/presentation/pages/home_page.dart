@@ -11,16 +11,19 @@ List<Category> categoryList = [
     title: 'Learn',
     subtitle: 'Study about any topic.',
     thumbnailUrl: '',
+    routePage: LearnRoute(),
   ),
   const Category(
     title: 'Master',
     subtitle: 'Self-evaluate with personalised quizes.',
     thumbnailUrl: '',
+    routePage: MasterRoute(),
   ),
   const Category(
     title: 'Guidance',
     subtitle: 'Your personal counselor. Ask Anything!',
     thumbnailUrl: '',
+    routePage: MasterRoute(),
   ),
 ];
 
@@ -53,7 +56,7 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return GestureDetector(
                     onTap: () {
-                      AppServices.router.push(const MasterRoute());
+                      AppServices.router.push(categoryList[index].routePage);
                     },
                     child: Card(
                       elevation: 8,

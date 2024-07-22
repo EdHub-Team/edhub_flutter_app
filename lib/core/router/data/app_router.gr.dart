@@ -63,6 +63,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
+    SummaryRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SummaryPage(),
+      );
+    },
   };
 }
 
@@ -174,6 +180,20 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SummaryPage]
+class SummaryRoute extends PageRouteInfo<void> {
+  const SummaryRoute({List<PageRouteInfo>? children})
+      : super(
+          SummaryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SummaryRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
