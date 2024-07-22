@@ -19,14 +19,14 @@ class LearnRemoteDataSourceImpl implements LearnRemoteDataSource {
   }) async {
     try {
       final model = GenerativeModel(
-        model: 'gemini-pro-vision',
+        model: 'gemini-1.5-flash',
         apiKey: AppSecrets.geminiAPI,
       );
       const prompt =
           'You are a tutor for college and school students of India.\n'
           'Follow these instructions:\n'
           'Summarize the topic(s) or content in the given image.'
-          'Return response in the below json format:'
+          'Return a direct json response in the below format (Do not write any additional text. Give ONLY json) :\n'
           '{'
           '"title": "give a two-word title to the topic here",'
           '"summary": "give your short summary here",'

@@ -52,7 +52,7 @@ class _QuizPageState extends State<QuizPage> {
                 ],
               );
             }
-            if (state is MasterGenerateQuizSuccess) {
+            if (state is MasterQuizInProgress) {
               return Column(
                 children: [
                   SizedBox(height: 20.h),
@@ -72,30 +72,42 @@ class _QuizPageState extends State<QuizPage> {
                                 style: AppTextStyles.clashDisplay.s18.w6,
                               ),
                               SizedBox(height: 16.h),
-                              Text(
-                                'A)  ${qna?.options?['a'].toString() ?? ''}',
-                                style: AppTextStyles.clashDisplay.s18.w5,
-                              ),
-                              SizedBox(height: 4.h),
-                              Text(
-                                'B)  ${qna?.options?['b'].toString() ?? ''}',
-                                style: AppTextStyles.clashDisplay.s18.w5,
-                              ),
-                              SizedBox(height: 4.h),
-                              Text(
-                                'C)  ${qna?.options?['c'].toString() ?? ''}',
-                                style: AppTextStyles.clashDisplay.s18.w5,
-                              ),
-                              SizedBox(height: 4.h),
-                              Text(
-                                'D)  ${qna?.options?['d'].toString() ?? ''}',
-                                style: AppTextStyles.clashDisplay.s18.w5,
-                              ),
-                              // SizedBox(height: 24.h),
-                              // Text(
-                              //   'Explanation: ${qna?.explanation ?? 'NA'}',
-                              //   style: AppTextStyles.clashDisplay.s18.w5,
-                              // ),
+                              for (int i = 1; i <= 4; i++)
+                                Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        AppServices.haptics.hapticMedium();
+                                        context.read<MasterBloc>().add(
+                                              MasterMarkAnswer(
+                                                quiz: state.quiz,
+                                                currentQnAIndex: index,
+                                                answer: i,
+                                              ),
+                                            );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 8.r,
+                                            backgroundColor:
+                                                (i == qna?.userMarkedAnswer)
+                                                    ? AppColors.twilightLavender
+                                                    : AppColors.pureWhite,
+                                          ),
+                                          SizedBox(width: 8.w),
+                                          Text(
+                                            qna?.options?['$i'].toString() ??
+                                                '',
+                                            style: AppTextStyles
+                                                .clashDisplay.s18.w5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 4.h),
+                                  ],
+                                ),
                             ],
                           ),
                         );
@@ -124,15 +136,74 @@ class _QuizPageState extends State<QuizPage> {
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.linear,
                           );
+                          context.read<MasterBloc>().add(
+                                MasterSubmitAnswer(
+                                  currentQnAIndex:
+                                      pageController.page?.toInt() ?? 0,
+                                ),
+                              );
                         },
                         child: Text(
-                          'Next',
+                          (pageController.hasClients &&
+                                  (((state.quiz.qnaList?.length ?? 0) - 1) ==
+                                      (pageController.page?.toInt() ?? 0)))
+                              ? 'Submit'
+                              : 'Next',
                           style: AppTextStyles.clashDisplay.s16.w5,
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 20.h),
+                ],
+              );
+            }
+
+            if (state is MasterQuizCompleted) {
+              final qnaList = state.quiz.qnaList;
+              return Column(
+                children: [
+                  SizedBox(height: 8.h),
+                  Text(
+                    'You scored ${state.score}.',
+                    style: AppTextStyles.clashDisplay.s16.w5,
+                  ),
+                  SizedBox(height: 8.h),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (int index = 0;
+                              index < (qnaList?.length ?? 0);
+                              index++) ...{
+                            Text(
+                              'Q${index + 1}.  ${qnaList?[index].question ?? ''}',
+                              style: AppTextStyles.clashDisplay.s18.w6,
+                            ),
+                            SizedBox(height: 16.h),
+                            Text(
+                              'Correct Answer:\nOption ${qnaList?[index].answer}. ${qnaList?[index].options?['${(qnaList[index].answer ?? 0)}'].toString() ?? ''}',
+                              style: AppTextStyles.clashDisplay.s14.w5,
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              'You Marked:\nOption ${qnaList?[index].userMarkedAnswer}. ${qnaList?[index].options?['${(qnaList[index].userMarkedAnswer ?? 0)}'].toString() ?? ''}',
+                              style: AppTextStyles.clashDisplay.s14.w5,
+                            ),
+                            SizedBox(height: 24.h),
+                            Text(
+                              'Explanation: ${qnaList?[index].explanation ?? 'NA'}',
+                              style: AppTextStyles.clashDisplay.s18.w5,
+                            ),
+                            SizedBox(height: 8.h),
+                            const Divider(),
+                            SizedBox(height: 8.h),
+                          }
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               );
             }

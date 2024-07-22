@@ -13,3 +13,30 @@ final class MasterGenerateQuiz extends MasterEvent {
     required this.difficultyLevel,
   });
 }
+
+final class MasterStartQuiz extends MasterEvent {
+  final Quiz quiz;
+  const MasterStartQuiz({required this.quiz});
+}
+
+final class MasterMarkAnswer extends MasterEvent {
+  final Quiz quiz;
+  final int currentQnAIndex;
+  final int? answer;
+  const MasterMarkAnswer({
+    required this.quiz,
+    required this.currentQnAIndex,
+    required this.answer,
+  });
+}
+
+final class MasterSubmitAnswer extends MasterEvent {
+  // final Quiz quiz;
+  final int currentQnAIndex;
+  // final int? answer;
+  const MasterSubmitAnswer({
+    // required this.quiz,
+    required this.currentQnAIndex,
+    // required this.answer,
+  });
+}

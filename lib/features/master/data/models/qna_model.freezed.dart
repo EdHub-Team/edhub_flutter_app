@@ -22,8 +22,9 @@ QnAModel _$QnAModelFromJson(Map<String, dynamic> json) {
 mixin _$QnAModel {
   String? get question => throw _privateConstructorUsedError;
   Map<String, dynamic>? get options => throw _privateConstructorUsedError;
-  String? get answer => throw _privateConstructorUsedError;
+  int? get answer => throw _privateConstructorUsedError;
   String? get explanation => throw _privateConstructorUsedError;
+  int? get userMarkedAnswer => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,8 +40,9 @@ abstract class $QnAModelCopyWith<$Res> {
   $Res call(
       {String? question,
       Map<String, dynamic>? options,
-      String? answer,
-      String? explanation});
+      int? answer,
+      String? explanation,
+      int? userMarkedAnswer});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$QnAModelCopyWithImpl<$Res, $Val extends QnAModel>
     Object? options = freezed,
     Object? answer = freezed,
     Object? explanation = freezed,
+    Object? userMarkedAnswer = freezed,
   }) {
     return _then(_value.copyWith(
       question: freezed == question
@@ -73,11 +76,15 @@ class _$QnAModelCopyWithImpl<$Res, $Val extends QnAModel>
       answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       explanation: freezed == explanation
           ? _value.explanation
           : explanation // ignore: cast_nullable_to_non_nullable
               as String?,
+      userMarkedAnswer: freezed == userMarkedAnswer
+          ? _value.userMarkedAnswer
+          : userMarkedAnswer // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -93,8 +100,9 @@ abstract class _$$QnAModelImplCopyWith<$Res>
   $Res call(
       {String? question,
       Map<String, dynamic>? options,
-      String? answer,
-      String? explanation});
+      int? answer,
+      String? explanation,
+      int? userMarkedAnswer});
 }
 
 /// @nodoc
@@ -112,6 +120,7 @@ class __$$QnAModelImplCopyWithImpl<$Res>
     Object? options = freezed,
     Object? answer = freezed,
     Object? explanation = freezed,
+    Object? userMarkedAnswer = freezed,
   }) {
     return _then(_$QnAModelImpl(
       question: freezed == question
@@ -125,11 +134,15 @@ class __$$QnAModelImplCopyWithImpl<$Res>
       answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       explanation: freezed == explanation
           ? _value.explanation
           : explanation // ignore: cast_nullable_to_non_nullable
               as String?,
+      userMarkedAnswer: freezed == userMarkedAnswer
+          ? _value.userMarkedAnswer
+          : userMarkedAnswer // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -141,7 +154,8 @@ class _$QnAModelImpl implements _QnAModel {
       {required this.question,
       required final Map<String, dynamic>? options,
       required this.answer,
-      required this.explanation})
+      required this.explanation,
+      required this.userMarkedAnswer})
       : _options = options;
 
   factory _$QnAModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -160,13 +174,15 @@ class _$QnAModelImpl implements _QnAModel {
   }
 
   @override
-  final String? answer;
+  final int? answer;
   @override
   final String? explanation;
+  @override
+  final int? userMarkedAnswer;
 
   @override
   String toString() {
-    return 'QnAModel(question: $question, options: $options, answer: $answer, explanation: $explanation)';
+    return 'QnAModel(question: $question, options: $options, answer: $answer, explanation: $explanation, userMarkedAnswer: $userMarkedAnswer)';
   }
 
   @override
@@ -179,13 +195,20 @@ class _$QnAModelImpl implements _QnAModel {
             const DeepCollectionEquality().equals(other._options, _options) &&
             (identical(other.answer, answer) || other.answer == answer) &&
             (identical(other.explanation, explanation) ||
-                other.explanation == explanation));
+                other.explanation == explanation) &&
+            (identical(other.userMarkedAnswer, userMarkedAnswer) ||
+                other.userMarkedAnswer == userMarkedAnswer));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, question,
-      const DeepCollectionEquality().hash(_options), answer, explanation);
+  int get hashCode => Object.hash(
+      runtimeType,
+      question,
+      const DeepCollectionEquality().hash(_options),
+      answer,
+      explanation,
+      userMarkedAnswer);
 
   @JsonKey(ignore: true)
   @override
@@ -199,14 +222,20 @@ class _$QnAModelImpl implements _QnAModel {
       this,
     );
   }
+
+  @override
+  set userMarkedAnswer(int? _userMarkedAnswer) {
+    // TODO: implement userMarkedAnswer
+  }
 }
 
 abstract class _QnAModel implements QnAModel {
   const factory _QnAModel(
       {required final String? question,
       required final Map<String, dynamic>? options,
-      required final String? answer,
-      required final String? explanation}) = _$QnAModelImpl;
+      required final int? answer,
+      required final String? explanation,
+      required final int? userMarkedAnswer}) = _$QnAModelImpl;
 
   factory _QnAModel.fromJson(Map<String, dynamic> json) =
       _$QnAModelImpl.fromJson;
@@ -216,9 +245,11 @@ abstract class _QnAModel implements QnAModel {
   @override
   Map<String, dynamic>? get options;
   @override
-  String? get answer;
+  int? get answer;
   @override
   String? get explanation;
+  @override
+  int? get userMarkedAnswer;
   @override
   @JsonKey(ignore: true)
   _$$QnAModelImplCopyWith<_$QnAModelImpl> get copyWith =>

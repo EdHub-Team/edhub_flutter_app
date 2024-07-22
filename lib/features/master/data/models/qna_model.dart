@@ -9,8 +9,9 @@ class QnAModel extends QnA with _$QnAModel {
   const factory QnAModel({
     required String? question,
     required Map<String, dynamic>? options,
-    required String? answer,
+    required int? answer,
     required String? explanation,
+    required int? userMarkedAnswer,
   }) = _QnAModel;
 
   factory QnAModel.fromJson(Map<String, Object?> json) =>

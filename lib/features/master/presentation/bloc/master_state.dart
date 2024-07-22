@@ -14,6 +14,26 @@ final class MasterGenerateQuizSuccess extends MasterState {
   const MasterGenerateQuizSuccess({required this.quiz});
 }
 
+final class MasterQuizInProgress extends MasterState {
+  final Quiz quiz;
+  final int? score;
+
+  const MasterQuizInProgress({
+    required this.quiz,
+    this.score,
+  });
+}
+
+final class MasterQuizCompleted extends MasterState {
+  final Quiz quiz;
+  final int score;
+
+  const MasterQuizCompleted({
+    required this.quiz,
+    required this.score,
+  });
+}
+
 final class MasterFailure extends MasterState {
   final String message;
   const MasterFailure({required this.message});
