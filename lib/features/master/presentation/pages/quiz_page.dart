@@ -87,6 +87,8 @@ class _QuizPageState extends State<QuizPage> {
                                             );
                                       },
                                       child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           CircleAvatar(
                                             radius: 8.r,
@@ -96,11 +98,13 @@ class _QuizPageState extends State<QuizPage> {
                                                     : AppColors.pureWhite,
                                           ),
                                           SizedBox(width: 8.w),
-                                          Text(
-                                            qna?.options?['$i'].toString() ??
-                                                '',
-                                            style: AppTextStyles
-                                                .clashDisplay.s18.w5,
+                                          Expanded(
+                                            child: Text(
+                                              qna?.options?['$i'].toString() ??
+                                                  '',
+                                              style: AppTextStyles
+                                                  .clashDisplay.s18.w5,
+                                            ),
                                           ),
                                         ],
                                       ),

@@ -3,6 +3,7 @@ import 'package:edhub_flutter_app/core/router/data/router.dart';
 import 'package:edhub_flutter_app/core/router/data/utils/path/route_path.dart';
 import 'package:edhub_flutter_app/features/auth/presentation/pages/login_page.dart';
 import 'package:edhub_flutter_app/features/auth/presentation/pages/signup_page.dart';
+import 'package:edhub_flutter_app/features/compete/presentation/pages/compete_page.dart';
 import 'package:edhub_flutter_app/features/home/presentation/pages/home_page.dart';
 import 'package:edhub_flutter_app/features/learn/presentation/pages/learn_page.dart';
 import 'package:edhub_flutter_app/features/learn/presentation/pages/summary_page.dart';
@@ -60,6 +61,12 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path: RoutePath.quizPage,
           page: QuizRoute.page,
+        ),
+
+        //COMPETE
+        AutoRoute(
+          path: RoutePath.competePage,
+          page: CompeteRoute.page,
         ),
 
         //SHARED

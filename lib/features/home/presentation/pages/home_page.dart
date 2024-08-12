@@ -20,10 +20,18 @@ List<Category> categoryList = [
     routePage: MasterRoute(),
   ),
   const Category(
+    title: 'Compete',
+    subtitle: 'Engage in group quizes / test series.',
+    thumbnailUrl: '',
+    routePage: CompeteRoute(),
+    isUnderDevelopment: true,
+  ),
+  const Category(
     title: 'Guidance',
     subtitle: 'Your personal counselor. Ask Anything!',
     thumbnailUrl: '',
     routePage: MasterRoute(),
+    isUnderDevelopment: true,
   ),
 ];
 
@@ -74,6 +82,24 @@ class HomePage extends StatelessWidget {
                               categoryList[index].subtitle,
                               style: AppTextStyles.clashDisplay.s14.w4,
                             ),
+                            if (categoryList[index].isUnderDevelopment) ...{
+                              SizedBox(height: 8.h),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.info,
+                                    color: AppColors.pureWhite,
+                                    size: 12.r,
+                                  ),
+                                  SizedBox(width: 8.w),
+                                  Text(
+                                    'Under development',
+                                    style: AppTextStyles.clashDisplay.s10.w8,
+                                  ),
+                                ],
+                              ),
+                            },
                           ],
                         ),
                       ),

@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CompeteRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompetePage(),
+      );
+    },
     GenerateQuizRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -70,6 +76,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [CompetePage]
+class CompeteRoute extends PageRouteInfo<void> {
+  const CompeteRoute({List<PageRouteInfo>? children})
+      : super(
+          CompeteRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompeteRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
